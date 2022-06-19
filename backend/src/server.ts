@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
+process.env.MONGO_URI
 
 import express from "express";
 import cors from "cors";
@@ -15,6 +16,8 @@ app.use(cors({
     credentials:true,
     origin:["http://localhost:4200"]
 }));
+
+
 
 app.use("/api/foods", foodRouter);
 app.use("/api/users", userRouter);
