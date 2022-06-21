@@ -7,7 +7,9 @@ import { FoodPageComponent } from './components/pages/food-page/food-page.compon
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
+import { OrdersPageComponent } from './components/pages/orders-page/orders-page.component';
 import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
+import { ProfilePageComponent } from './components/pages/profile-page/profile-page.component';
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
 
 const routes: Routes = [
@@ -21,6 +23,9 @@ const routes: Routes = [
   {path:'checkout', component: CheckoutPageComponent, canActivate:[AuthGuard]},
   {path:'payment', component: PaymentPageComponent, canActivate:[AuthGuard]},
   {path:'track/:orderId', component: OrderTrackPageComponent, canActivate:[AuthGuard]},
+  {path:'profile', component: ProfilePageComponent, canActivate:[AuthGuard]},
+  {path:'orders', component: OrdersPageComponent, canActivate:[AuthGuard]},
+
 
 ];
 

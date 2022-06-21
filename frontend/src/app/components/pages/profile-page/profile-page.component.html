@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="details">
+    <app-title title="Profile"></app-title>
+
+    <form [formGroup]="profileForm" (ngSubmit)="submit()">
+
+    <text-input
+    [control]="fc.name"
+    [showErrorsWhen]="isSubmitted"
+    type="text"
+    label="Name">
+    </text-input>
+
+  <text-input
+  [control]="fc.address"
+  [showErrorsWhen]="isSubmitted"
+  type="text"
+  label="Address">
+  </text-input>
+  <text-input
+  [control]="fc.currentPassword"
+  [showErrorsWhen]="isSubmitted"
+  type="password"
+  label="current Password">
+  </text-input>
+  <text-input
+  [control]="fc.newPassword"
+  [showErrorsWhen]="isSubmitted"
+  type="password"
+  label="new Password">
+  </text-input>
+  <text-input
+  [control]="fc.confirmPassword"
+  [showErrorsWhen]="isSubmitted"
+  type="password"
+  label="confirm Password">
+  </text-input>
+
+    <default-button text="Update">Update</default-button>
+
+    </form>
+  </div>
+</div>

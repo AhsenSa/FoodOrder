@@ -23,13 +23,18 @@ router.get("/seed", asyncHandler(
 router.post("/login", asyncHandler(
   async (req, res) => {
     const {email, password} = req.body;
-    const encryptedPassword = await bcrypt.hash(password, 10);
-    const user = await UserModel.findOne({email , encryptedPassword});
+    const user = await UserModel.findOne({email});
+
+    if(user && !(await bcrypt.compare(password, user.password))){
+      res.status(HTTP_BAD_REQUEST).send("Username or password is invalid!");
+      return
+    }
       
      if(user) {
       res.send(generateTokenReponse(user));
      }
      else{
+      console.log('no user')
        res.status(HTTP_BAD_REQUEST).send("Username or password is invalid!");
      }
   
@@ -78,6 +83,37 @@ router.post('/register', asyncHandler(
       token: token
     };
   }
+  router.post('/profile', asyncHandler(
+    async (req, res) => {
+      const {name, currentPassword, newPassword, 
+        address, email} = req.body;
+      const user = await UserModel.findOne({email});
+      if(!user){
+        res.status(HTTP_BAD_REQUEST)
+        .send('User does not exist!');
+        return;
+      }
+      
+      const encryptedPassword = await bcrypt.hash(currentPassword, 10);
+    
+      console.log(user);
+      console.log(user.password);
+      console.log(encryptedPassword)
+      if(!(await bcrypt.compare(currentPassword, user.password))){
+        res.status(HTTP_BAD_REQUEST)
+        .send('Wrong password!');
+        return;
+      }
+
+      user.name = name;
+      user.address = address;
+      user.password = await bcrypt.hash(newPassword, 10);
+      await user.save()
+      res.send(generateTokenReponse(user));
+    }
+  ))
+  
+
 
   
 
