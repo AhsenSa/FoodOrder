@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  [x: string]: any;
+  //[x: string]: any;
   loginForm!:FormGroup;
   isSubmitted = false;
   returnUrl = '';

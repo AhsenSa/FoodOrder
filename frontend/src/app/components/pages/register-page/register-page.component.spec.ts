@@ -1,6 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UserService } from 'src/app/services/user.service';
 
 import { RegisterPageComponent } from './register-page.component';
+
+
+class MockUserService {
+  //profile gibt, ohne httpCall
+  register(){
+
+  }
+  }
 
 describe('RegisterPageComponent', () => {
   let component: RegisterPageComponent;
@@ -8,7 +19,11 @@ describe('RegisterPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegisterPageComponent ]
+      imports: [ReactiveFormsModule, RouterTestingModule],
+      declarations: [ RegisterPageComponent ],
+      providers: [
+        {provide: UserService, useClass: MockUserService}
+       ]
     })
     .compileComponents();
   });
@@ -23,3 +38,4 @@ describe('RegisterPageComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

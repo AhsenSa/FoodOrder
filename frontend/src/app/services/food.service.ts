@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { sample_foods, sample_tags } from 'src/data';
@@ -9,6 +9,7 @@ import { Tag } from '../shared/models/Tag';
 @Injectable({
   providedIn: 'root'
 })
+
 export class FoodService {
 
   constructor(private http:HttpClient) { }
